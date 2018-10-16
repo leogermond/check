@@ -34,7 +34,7 @@ foreach arg : [
   '-Wno-missing-declarations',
   '-Wno-old-style-definition',
   '-Wno-declaration-after-statement',
-  '-Wno-unused-parameters',
+  '-Wno-unused-parameter',
   ]
   if cc.has_argument(arg)
     no_warn_args += [arg]
