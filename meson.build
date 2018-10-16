@@ -46,7 +46,7 @@ include_directories = []
 subdir('lib')
 subdir('src')
 
-libcheck = static_library('check',
+libcheck = static_library('libcheck',
   sources,
   include_directories : include_directories,
   c_args: libcheck_visibility_args + no_warn_args +
@@ -55,3 +55,14 @@ libcheck = static_library('check',
 	  ['-DHAVE_VSNPRINTF', '-DHAVE_SNPRINTF', '-DHAVE_MALLOC',
        '-DHAVE_REALLOC'],
   pic: true)
+
+libcheck_native = static_library('libcheck-native',
+  sources,
+  include_directories : include_directories,
+  c_args: libcheck_visibility_args + no_warn_args +
+	  # Don't want libcompat to think we don't have these and substitute
+	  # replacements since we don't check for or define these. See libcompat.h
+	  ['-DHAVE_VSNPRINTF', '-DHAVE_SNPRINTF', '-DHAVE_MALLOC',
+       '-DHAVE_REALLOC'],
+  pic: true,
+  native: true)
